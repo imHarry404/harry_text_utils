@@ -11,31 +11,60 @@ export default function TextForm(props) {
   const handleUppperClick = () => {
     // console.log("upperclick was clicked")
     let data = text.toUpperCase()
-    setText(data)
+    if(data.length===0){
+      props.showAlert("Error!.. Enter Text Please🙄 !","danger")
+    }
+    else{
+      setText(data)
+      props.showAlert("Converted to Upper case !","success")
+    }
   }
   const handleloweClick = () => {
     // console.log('lower case')
     let data = text.toLowerCase();
+    if(data.length===0){
+      props.showAlert("Error!.. Enter Text Please🙄 !","danger")
+    }
+    else{
     setText(data);
+    props.showAlert("Converted to Lower case !","success")
+    }
   }
   const handleClearClick = () => {
     // console.log('lower case')
     let data = ''
+    if(data.length===0){
+    props.showAlert("Error!.. Enter Text Please🙄 !","danger")
+    }
+    else{
     setText(data);
+    props.showAlert("Text Cleared","success")}
   };
-
+  
   // handle copy
   const handleCopy=()=>{
+    let data=text
+    if(data.length===0){
+      props.showAlert("Error!.. Enter Text Please🙄 !","danger")
+    }
+    else{
     let data=document.getElementById('myBox')
     data.select()
     navigator.clipboard.writeText(data.value)
-    
+    props.showAlert("Text Copied to clipboard","success")
+    }
   }
   // handle extra spaces
   const handleSpace = () => {
-    let data = text.split(/[ ]+/)
+    let data=text
+    if(data.length===0){
+      props.showAlert("Error!.. Enter Text Please🙄 !","danger")
+    }
+    else{
+      let data = text.split(/[ ]+/)
     setText(data.join(" "));
-    
+    props.showAlert("All extra spaces were removed","success")
+    }
   };
 
 
@@ -62,7 +91,7 @@ export default function TextForm(props) {
           ></textarea>
         </div>
         <button
-          className="btn btn-primary mx-2 my-2"
+          className="btn btn-success mx-2 my-2"
           value={text}
           onClick={handleUppperClick}
         >
@@ -107,11 +136,8 @@ export default function TextForm(props) {
       >
         <h1>Your text Summary</h1>
         <p>
-          <b>{text.split(" ").length}</b> words <b>{text.length}</b> characters
-          total
-        </p>
-        <p>
-          <b className="time">{0.008 * text.split(" ").length}</b> time will be
+          <b>{text.split(" ").length - 1}</b> words <b>{text.length}</b>{" "}
+          characters total ..... and <b className="time">{0.008 * text.split(" ").length}</b> time will be
           taken to read your text
         </p>
         <p>
@@ -121,8 +147,8 @@ export default function TextForm(props) {
           <b className="tw_sky">Twitter</b> out of 280/ {280 - text.length}{" "}
           characters remaining
         </p>
-        <h2>Preview</h2>
-        <p>{text.length>0?text:"Enter some text to preview here🥲"}</p>
+        <h2>Preview😉</h2>
+        <p>{text.length > 0 ? text : "Enter some text to preview here🥲"}</p>
       </div>
     </>
   );
