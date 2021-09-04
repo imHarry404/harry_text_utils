@@ -32,11 +32,12 @@ export default function TextForm(props) {
   }
   const handleClearClick = () => {
     // console.log('lower case')
-    let data = ''
+    let data = text
     if(data.length===0){
     props.showAlert("Error!.. Enter Text Please🙄 !","danger")
     }
     else{
+      let data=''
     setText(data);
     props.showAlert("Text Cleared","success")}
   };
@@ -79,7 +80,7 @@ export default function TextForm(props) {
         <div className="mb3">
           <textarea
             style={{
-              backgroundColor: props.mode === "dark" ? "gray" : "white",
+              backgroundColor: props.mode === "dark" ? "#272424" : "white",
               color: props.mode === "dark" ? "white" : "black",
             }}
             className="form-control"
@@ -136,8 +137,15 @@ export default function TextForm(props) {
       >
         <h1>Your text Summary</h1>
         <p>
-          <b>{text.split(" ").length - 1}</b> words <b>{text.length}</b>{" "}
-          characters total ..... and <b className="time">{0.008 * text.split(" ").length}</b> time will be
+          <b>
+            {
+              text.split(" ").filter((element) => {
+                return element.length !== 0;
+              }).length
+            }
+          </b>{" "}
+          words <b>{text.length}</b> characters total ..... and{" "}
+          <b className="time">{0.008 * text.split(" ").length}</b> time will be
           taken to read your text
         </p>
         <p>

@@ -8,9 +8,12 @@ import {Link} from 'react-router-dom'
 export default function Navbar(props) {
   return (
     <nav
-      className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
+      className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
+    >
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/" >{props.title}</Link>
+        <Link className="navbar-brand" to="/">
+          {props.title}
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -30,18 +33,55 @@ export default function Navbar(props) {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about"> {props.aboutText}
-            </Link>
+              <Link className="nav-link" to="/about">
+                {" "}
+                {props.aboutText}
+              </Link>
             </li>
           </ul>
-
-          <div className={`form-check form-switch text-${props.mode==='light' ? 'dark':'light'}`}>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="flexSwitchCheckDefault"
-              onClick={props.toggleMode}
-            />
+          <div className="d-flex">
+            <div
+              className="bg-primary rounded mx-2"
+              onClick={() => {
+                props.toggleMode("primary");
+              }}
+              style={{ height: "20px", width: "20px" }}
+            ></div>
+            <div
+              className="bg-danger rounded mx-2"
+              onClick={() => {
+                props.toggleMode("danger");
+              }}
+              style={{ height: "20px", width: "20px" }}
+            ></div>
+            <div
+              className="bg-success rounded mx-2"
+              onClick={() => {
+                props.toggleMode("success");
+              }}
+              style={{ height: "20px", width: "20px" }}
+            ></div>
+            <div
+              className="bg-warning rounded mx-2"
+              onClick={() => {
+                props.toggleMode("warning");
+              }}
+              style={{ height: "20px", width: "20px" }}
+            ></div>
+            <div
+              className="bg-info rounded mx-2"
+              onClick={() => {
+                props.toggleMode("info");
+              }}
+              style={{ height: "20px", width: "20px" }}
+            ></div>
+            <div
+              className="bg-secondary rounded mx-2"
+              onClick={() => {
+                props.toggleMode("secondary");
+              }}
+              style={{ height: "20px", width: "20px" }}
+            ></div>
           </div>
         </div>
       </div>
